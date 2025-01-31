@@ -139,12 +139,89 @@ namespace LAB1._2._2
                     Xuat(XoaCacSoNT(ds));
                     break;
                 case 15:
+                    Console.WriteLine("vi tri dau tien cua phan tu lon nhat la: " + TimVTDauTienCuaPTLonNhat(ds));
 
                     break;
-                case 15:
+                case 16:
+                    Console.WriteLine("vi tri cuoi cung cua phan tu nho nhat la: " + TimVTCuoiCungCuaPTNhoNhat(ds));
+                    break;
+                case 17:
+
+                    Console.WriteLine("so luong phan tu lon hon phan tu dung truoc no la: " + DemSoLuongPhanTuLonHonPhanTuTruoc(ds));
+                    break;
+
+                case 18:
+                    Console.WriteLine("so luong phan tu nho hon phan tu dung truoc no la: " + DemSoLuongPhanTuNhoHonPhanTuTruoc(ds));
+                    break;
+                case 19:
+                    Console.WriteLine("Phan tu co gia tri nho nhat nhung ko phai so am la: " + TimPTNhoNhatNhungKoAm(ds));
+                    break;
+                case 20:
+                    Console.WriteLine("So lan hoan doi it nhat de sap xep mang la: " + DemSoLanToiThieuDeSapXepMang(ds));
+                    break;
+                case 21:
+                    Console.WriteLine("phan tu xuat hien nhieu nhat trong mang la: " + TimPTXuatHienItNhat(ds));
+                    break;
+                case 22:
+                    Console.WriteLine("mang sau khi sap xep la ");
+                    Xuat(SapXepLonDauNhoCuoi(ds));
+
+                    break;
+                case 23:
+                    Console.Write("Nhap vi tri ban muon xoa: ");
+                    x = int.Parse(Console.ReadLine());
+                    Xuat(XoaPTTaiVTK(ds, x));
+
+
+                    break;
+                case 24:
+                    Console.Write("Nhap hieu d ban muon: ");
+                    x = int.Parse(Console.ReadLine());
+                    Console.WriteLine("cac so chan lien tiep co hieu bang d la");
+                    TimTatCaCacSoChanLienTiepCoHieuBangD(ds, x);
+                    break;
+                case 25:
+                    Console.Write("vi tri cua phan tu nho nhat trong mang tang dan la: " + TimVTCuaPTNhoNhatTrongMotMangTangDan(ds));
+                    break;
+                case 26:
+                    List<int> mang1 = new List<int>();
+                    List<int> mang2 = new List<int>();
+                    Console.WriteLine("nhap hai mang ban muon kiem tra");
+                    Nhap(mang1);
+                    Console.WriteLine("mang dau tien ban vua nhap la: ");
+                    Xuat(mang1);
+                    Nhap(mang2);
+                    Console.WriteLine("mang thu hai ban vua nhap la: ");
+                    Xuat(mang2);
+                    if (KTXemHaiMangCoChuaPTChungKo(mang1, mang2))
+                    {
+                        Console.WriteLine("hai mang co chua phan tu chung");
+                    }
+                    else Console.WriteLine("hai mang ko chua phan tu chung");
+                    break;
+                case 27:
+                    Console.WriteLine("mang sau khi tach thanh hai mang chan va le la: ");
+
+                    TachMang(ds);
+
+                    break; 
+                case 28:
+                    if (KiemTraSapXep(ds)) Console.WriteLine("Mang da duoc sap xep");
+                    else Console.WriteLine("mang chua duoc sap xep");
+                    break;  
+
+                 case 29:
+                    Console.Write("nhap so cho truoc de so sanh: ");
+                    x = int.Parse(Console.ReadLine());
+                    Console.WriteLine("so chan nho hon so " + x + " cho truoc trong mang la: " + TimSoChanLonHonSoChoTruoc(ds, x));
 
                     break;
 
+
+                 case 30:
+                    Console.WriteLine("phan tu xuat hien it nhat trong mang la: " + TimPTXuatHienItNhat(ds));
+
+                        break;
                 default:
                     break;
             }
@@ -524,7 +601,7 @@ namespace LAB1._2._2
             return phanTuMax;
         }
 
-        static void SapXepLonDauNhoCuoi(List<int> ds)
+        static List<int> SapXepLonDauNhoCuoi(List<int> ds)
         {
             int ptLonNhat = ds[TimVTDauTienCuaPTLonNhat(ds)];
             int ptNhoNhat = ds[TimVTCuoiCungCuaPTNhoNhat(ds)];
@@ -542,6 +619,7 @@ namespace LAB1._2._2
                     --cuoi;
                 }
             }
+            return ds;
         }
 
         static List<int> XoaPTTaiVTK(List<int> ds, int k)
