@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.Remoting.Channels;
 using System.Runtime.Remoting.Messaging;
 using System.Security.Cryptography;
 using System.Text;
@@ -64,10 +65,85 @@ namespace LAB1._2._2
                     Console.WriteLine("Thoát khỏi chương trình");
                     break;
                 case 1:
-                    Nhap(ds);
+                    SapTang(ds);
                     Xuat(ds);
                     break;
-                
+                case 2:
+                    SapGiam(ds);
+                    Xuat(ds);
+                    break;
+                case 3:
+                    LeTang_ChanGiuNguyen(ds);
+                    Xuat(ds);
+                    break;
+                case 4:
+                    Console.Write("phan tu lon thu hai trong mang la: " + TimPhanTuLonThuHai(ds));
+                    break;
+                case 5:
+                    Console.Write("phan tu nho thu hai trong mang la: " + TimPhanTuNhoThuHai(ds));
+
+                    break;
+                case 6:
+                    Console.Write("Nhap gia tri x ban muon: ");
+                    x = int.Parse(Console.ReadLine());
+                    List<(int, int)> capPhanTu = TimCapCoTongBangX(ds, x);
+                    XuLyChucNang(capPhanTu);
+                    
+                    break;
+                case 7:
+                    Console.Write("Phan tu co tong cac chu so lon nhat la: " + TimPTCoTongCacChuSoLonNhat(ds));
+                    break;
+                case 8:
+
+                    int pt = TimGiaTriLonNhatNhungKhongPhaiCuoi(ds);
+                    if (pt == -1)
+                    {
+                        Console.Write("Phan tu lon nhat nhung ko phai la phan tu cuoi cung khong co trong mang");
+                    }
+                    else      Console.Write("Phan tu lon nhat nhung ko phai la phan tu cuoi cung la: " + pt);
+                    break;
+                case 9:
+                    List<(int, int)> capPhanTuCoHieuLaSoNT = TimCacCapCoHieuLaSoNT(ds);
+                    XuLyChucNang(capPhanTuCoHieuLaSoNT);
+
+                    break;
+                case 10:
+                    Console.Write("Nhap gia tri x ban muon: ");
+                    x = int.Parse(Console.ReadLine());
+                    XoaPTDauTienLonHonX(ds, x);
+                    Console.WriteLine("mang sau khi xoa phan tu dau tien lon hon x la: ");
+                    Xuat(ds);
+
+
+                    break;
+                case 11:
+                    Console.Write("Nhap gia tri x ban muon: ");
+                    x = int.Parse(Console.ReadLine());
+                    
+                    Xuat(ChenPhanTuXSaoChoMangVanTangDan(ds, x));
+                    break;
+                case 12:
+                    Console.Write("Nhap gia tri x ban muon: ");
+                    x = int.Parse(Console.ReadLine());
+                    Xuat(ChenXVaoDauMang(ds, x));
+                    break;
+                case 13:
+                    Console.Write("Nhap gia tri x ban muon: ");
+                    x = int.Parse(Console.ReadLine());
+                    Console.Write("mang sau khi coa cac phan tu co gia tri lon hon x la: ");
+                    Xuat(XoaCacPTLonHonX(ds, x));
+
+                    break;
+                case 14:
+                    Console.WriteLine("mang sau khi xoa tat ca cac so NT la: ");
+                    Xuat(XoaCacSoNT(ds));
+                    break;
+                case 15:
+
+                    break;
+                case 15:
+
+                    break;
 
                 default:
                     break;
@@ -182,6 +258,22 @@ namespace LAB1._2._2
                 }
             }
             return result;
+        }
+
+        static void XuLyChucNang(List<(int, int)> capPhanTu)
+        {
+            if (capPhanTu.Count > 0)
+            {
+                Console.WriteLine("Cac cap phan tu thoa man theo de bai mang la: ");
+                foreach (var cap in capPhanTu)
+                {
+                    Console.WriteLine($"({cap.Item1}, {cap.Item2})");
+                }
+            }
+            else
+            {
+                Console.WriteLine("khong thoa man");
+            }
         }
         
 
